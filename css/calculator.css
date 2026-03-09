@@ -1,0 +1,81 @@
+
+
+body {
+    align-items: center;
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    margin: 0;
+    min-height: 100vh
+}
+
+h1 {
+    color: black;
+}
+
+button {
+    background-color: antiquewhite;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+}
+
+input {
+    width: 50%;
+    height: 20px;
+    margin: 10px;
+}
+
+.title-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    height: 5vh;
+    width: 70vh;
+    margin-bottom: 10px;
+
+    background-color:antiquewhite;
+
+    border-radius: 20px;
+}
+
+.bottons-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 90%;
+
+    background-color: aliceblue;
+}
+
+.marco-calculadora {
+    align-items: center;
+    display: flex;
+    vertical-align: middle;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    width: 50%;
+    height: 70vh;
+    
+    border-radius: 40px;
+    border-color: black;
+    background-color: rgba(216, 216, 216, 0.836);
+}
+
+ /* Esto es copiado de la IA, mañana tengo que verlo, entenderlo y modificar mi código para que los botones se distribuyan en grid*/
+.grid-botones {
+    display: grid;
+    /* Crea 4 columnas de igual tamaño (1 fracción cada una) */
+    grid-template-columns: repeat(4, 1fr); 
+    /* Crea 4 filas de igual tamaño */
+    grid-template-rows: repeat(4, 1fr);    
+    
+    gap: 10px;      /* Espacio entre botones */
+    width: 90%;     /* Ajusta al ancho del marco */
+    margin-top: 20px;
+}
