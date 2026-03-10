@@ -1,14 +1,15 @@
 
 
 body {
-    align-items: center;
-    vertical-align: middle;
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
 
     margin: 0;
-    min-height: 100vh
+    min-height: 100vh;
+
+    background-color: black;
 }
 
 h1 {
@@ -21,45 +22,61 @@ button {
     text-align: center;
 }
 
+/*Hacer desaparecer las flechas própias de un imput number*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 input {
-    width: 50%;
-    height: 20px;
+    text-align: right;
+    padding-right: 20px;
+    width: 80%;
+    height: 50px;   
     margin: 10px;
+    font-size: 40px;
+    font-family: 'Times New Roman', Times, serif;
+
+    /*background-color: transparent;*/
+    color: #333;
+    box-shadow: inset 5px 5px 10px #bec7d4, inset -5px -5px 10px #ffffff;
 }
 
 .title-div {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+
     padding: 10px;
     height: 5vh;
     width: 70vh;
     margin-bottom: 10px;
-
-    background-color:antiquewhite;
-
     border-radius: 20px;
+
+    background-color:rgb(241, 162, 59);
 }
 
 .bottons-div {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
     justify-content: center;
+    align-items: center;
+
+    gap: 10px;
     width: 90%;
     height: 90%;
-
-    background-color: aliceblue;
 }
 
 .marco-calculadora {
-    align-items: center;
     display: flex;
-    vertical-align: middle;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     padding-top: 20px;
     padding-bottom: 30px;
-    width: 50%;
+    width: 40%;
     height: 70vh;
     
     border-radius: 40px;
@@ -67,15 +84,21 @@ input {
     background-color: rgba(216, 216, 216, 0.836);
 }
 
- /* Esto es copiado de la IA, mañana tengo que verlo, entenderlo y modificar mi código para que los botones se distribuyan en grid*/
-.grid-botones {
-    display: grid;
-    /* Crea 4 columnas de igual tamaño (1 fracción cada una) */
-    grid-template-columns: repeat(4, 1fr); 
-    /* Crea 4 filas de igual tamaño */
-    grid-template-rows: repeat(4, 1fr);    
-    
-    gap: 10px;      /* Espacio entre botones */
-    width: 90%;     /* Ajusta al ancho del marco */
-    margin-top: 20px;
+.button-calculator,
+.button-calculator-number  {
+    height: 90%;
+    width: 90%;
+    background-color:rgb(241, 162, 59);
+    border-radius: 30px;
+
+    font-size: 60px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.button-calculator:hover {
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
+}
+
+.button-calculator:active {
+    transform: translateY(1px); /* Efecto de "clic" al presionar */
 }
