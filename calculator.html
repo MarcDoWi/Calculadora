@@ -59,13 +59,15 @@
         const operaciones = Array.from(document.getElementsByClassName("button-calculator-operation"));
         operaciones.forEach(
             operation => {operation.addEventListener('click', function() {
-                if (operacionARealizar != null) {
+                if (operacionARealizar == null) {
                     operacionARealizar = operation.textContent;
                     num1 = inputCalculator.value;
-                    inputCalculator = 0;
+                    inputCalculator.value = "";
                     alert(num1);
                 }
-                else {}
+                else {
+                    alert(error);
+                }
                 
         })});
             
