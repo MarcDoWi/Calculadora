@@ -22,13 +22,6 @@ button {
     text-align: center;
 }
 
-/*Hacer desaparecer las flechas própias de un imput number*/
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
 input {
     text-align: right;
     padding-right: 20px;
@@ -85,7 +78,8 @@ input {
 }
 
 .button-calculator,
-.button-calculator-number  {
+.button-calculator-number,
+.button-calculator-operation  {
     height: 90%;
     width: 90%;
     background-color:rgb(241, 162, 59);

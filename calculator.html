@@ -12,40 +12,64 @@
         <h1>Welcome to Marc's Calculator</h1>
     </div>
     <div class="marco-calculadora">
-        <input type="number" id="calculatorInput"/>
+        <input type="text" id="calculatorInput"/>
         <div class="bottons-div">
             <button class="button-calculator-number">7</button>
             <button class="button-calculator-number">8</button>
             <button class="button-calculator-number">9</button>
-            <button class="button-calculator">÷</button>
+            <button class="button-calculator-operation">÷</button>
             <button class="button-calculator-number">4</button>
             <button class="button-calculator-number">5</button>
             <button class="button-calculator-number">6</button>
-            <button class="button-calculator">×</button>
+            <button class="button-calculator-operation">×</button>
             <button class="button-calculator-number">1</button>
             <button class="button-calculator-number">2</button>
             <button class="button-calculator-number">3</button>
-            <button class="button-calculator">-</button>
+            <button class="button-calculator-operation">-</button>
             <button class="button-calculator">+/-</button>
             <button class="button-calculator-number">0</button>
-            <button class="button-calculator">,</button>
-            <button class="button-calculator">+</button>
+            <button class="button-calculator-number">,</button>
+            <button class="button-calculator-operation">+</button>
         </div>
     </div>
     <script>
+        //Y si se intenta operar sin introducir ningún valor?
+        let num1;
+        let num2;
+        let operacionARealizar;
+
         const inputCalculator  = document.getElementById("calculatorInput");
         inputCalculator.addEventListener('keypress', function(tecla){
-            if(!/[0-9]/.test(tecla.key)){
+            if(!/[0-9.]/.test(tecla.key)){
                 tecla.preventDefault();
             }
         });
         const botones = Array.from(document.getElementsByClassName("button-calculator-number"));
 
-        botones.forEach(element => {element.addEventListener('click', function() {
-            inputCalculator.value += element.textContent;
-        })
+        botones.forEach(button => {button.addEventListener('click', function() {
+            if (button.textContent != ",") {
+                inputCalculator.value += button.textContent;
+            } else {
+                if (!inputCalculator.value.includes('.')) {
+                    inputCalculator.value += ".";
+                }
+            }
+        })});
+
+        const operaciones = Array.from(document.getElementsByClassName("button-calculator-operation"));
+        operaciones.forEach(
+            operation => {operation.addEventListener('click', function() {
+                if (operacionARealizar != null) {
+                    operacionARealizar = operation.textContent;
+                    num1 = inputCalculator.value;
+                    inputCalculator = 0;
+                    alert(num1);
+                }
+                else {}
+                
+        })});
             
-        });
+        
 
     </script>
 </body>
