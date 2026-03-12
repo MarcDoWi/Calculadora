@@ -53,7 +53,7 @@ input {
 .bottons-div {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
     justify-content: center;
     align-items: center;
 
@@ -77,7 +77,8 @@ input {
     background-color: rgba(216, 216, 216, 0.836);
 }
 
-.button-calculator,
+.button-calculator-restart,
+.button-calculator-result,
 .button-calculator-number,
 .button-calculator-operation  {
     height: 90%;
@@ -89,10 +90,16 @@ input {
     font-family: 'Times New Roman', Times, serif;
 }
 
-.button-calculator:hover {
+.button-calculator-restart:hover,
+.button-calculator-result:hover,
+.button-calculator-number:hover,
+.button-calculator-operation:hover {
     box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
 }
 
-.button-calculator:active {
+.button-calculator-restart:active,
+.button-calculator-result:active,
+.button-calculator-number:active,
+.button-calculator-operation:active {
     transform: translateY(1px); /* Efecto de "clic" al presionar */
 }

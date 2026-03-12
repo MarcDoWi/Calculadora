@@ -14,6 +14,10 @@
     <div class="marco-calculadora">
         <input type="text" id="calculatorInput"/>
         <div class="bottons-div">
+            <button class="button-calculator-operation">%</button>
+            <button class="button-calculator-restart" id="clearEntryButton">CE</button>
+            <button class="button-calculator-restart" id="clearAllButton">C</button>
+            <button class="button-calculator-result" id="restartButton">=</button>
             <button class="button-calculator-number">7</button>
             <button class="button-calculator-number">8</button>
             <button class="button-calculator-number">9</button>
@@ -26,27 +30,49 @@
             <button class="button-calculator-number">2</button>
             <button class="button-calculator-number">3</button>
             <button class="button-calculator-operation">-</button>
-            <button class="button-calculator">+/-</button>
+            <button class="button-calculator-operation">+/-</button>
             <button class="button-calculator-number">0</button>
             <button class="button-calculator-number">,</button>
             <button class="button-calculator-operation">+</button>
         </div>
     </div>
     <script>
-        //Y si se intenta operar sin introducir ningún valor?
-        let num1;
-        let num2;
-        let operacionARealizar;
 
-        const inputCalculator  = document.getElementById("calculatorInput");
-        inputCalculator.addEventListener('keypress', function(tecla){
+        function calculateResult(num1, num2, operation) {
+            switch (operation) {
+                case "+":
+                    return num1 + num2;
+                    break;
+                case "-":
+                    return num1 - num2;
+                    break;
+                case "×":
+                    return num1 * num2;
+                    break;
+                case "÷":
+                    return num1 / num2;
+                    break;
+                default:
+                    alert("Error");   
+            }
+        }
+
+        function clearInputAndResult() {
+            result = 0;
+            inputCalculator.value = "";
+        }
+
+        function clearInput() {
+            inputCalculator.value = "";
+        }
+
+        function blockInvalidKeys(tecla) {
             if(!/[0-9.]/.test(tecla.key)){
                 tecla.preventDefault();
             }
-        });
-        const botones = Array.from(document.getElementsByClassName("button-calculator-number"));
+        }
 
-        botones.forEach(button => {button.addEventListener('click', function() {
+        function buttonClick(button) {
             if (button.textContent != ",") {
                 inputCalculator.value += button.textContent;
             } else {
@@ -54,25 +80,46 @@
                     inputCalculator.value += ".";
                 }
             }
-        })});
+        }
 
-        const operaciones = Array.from(document.getElementsByClassName("button-calculator-operation"));
-        operaciones.forEach(
-            operation => {operation.addEventListener('click', function() {
-                if (operacionARealizar == null) {
+        function calculateAndShowResult() {
+            result = calculateResult(result, inputCalculator.value, operacionARealizar);
+            inputCalculator.value = result;
+            operacionARealizar = null;
+        }
+
+        function saveOrApplyOperation(operation) {
+            if (operacionARealizar == null) {
                     operacionARealizar = operation.textContent;
-                    num1 = inputCalculator.value;
-                    inputCalculator.value = "";
-                    alert(num1);
-                }
-                else {
-                    alert(error);
-                }
-                
-        })});
-            
-        
+                    result = inputCalculator.value;
+            } else {
+                result = calculateResult(result, inputCalculator.value, operacionARealizar);
+            }
+            inputCalculator.value = "";
+        }
 
+        //Y what if u try to operate without any value?
+        //ToDo: apply button %
+        let result = 0;
+        let operacionARealizar;
+
+        const inputCalculator  = document.getElementById("calculatorInput");
+        const botones = Array.from(document.getElementsByClassName("button-calculator-number"));
+        const operaciones = Array.from(document.getElementsByClassName("button-calculator-operation"));
+        const resultButton = document.getElementById("restartButton");
+        const clearEntryButton = document.getElementById("clearEntryButton");
+        const clearAllButton = document.getElementById("clearAllButton");
+
+
+
+        inputCalculator.addEventListener('keypress', () => blockInvalidKeys(tecla));
+        clearEntryButton.addEventListener('click', () => clearInput());
+        clearAllButton.addEventListener('click', () => clearInputAndResult());
+        resultButton.addEventListener('click', () => calculateAndShowResult());
+            
+        botones.forEach(button => {button.addEventListener('click', () => buttonClick(button))});
+        operaciones.forEach(operation => {operation.addEventListener('click', () => saveOrApplyOperation(operation))});    
+        
     </script>
 </body>
 </html>
