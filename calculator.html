@@ -83,9 +83,12 @@
         }
 
         function calculateAndShowResult() {
-            result = calculateResult(result, inputCalculator.value, operacionARealizar);
-            inputCalculator.value = result;
-            operacionARealizar = null;
+            // With this if block, we handle the error that occurs when trying to operate without selecting an operation.
+            if (operacionARealizar != null) {
+                result = calculateResult(result, inputCalculator.value, operacionARealizar);
+                inputCalculator.value = result;
+                operacionARealizar = null;
+            }
         }
 
         function saveOrApplyOperation(operation) {
@@ -98,7 +101,6 @@
             inputCalculator.value = "";
         }
 
-        //Y what if u try to operate without any value?
         //ToDo: apply button %
         let result = 0;
         let operacionARealizar;
@@ -110,8 +112,6 @@
         const clearEntryButton = document.getElementById("clearEntryButton");
         const clearAllButton = document.getElementById("clearAllButton");
 
-
-
         inputCalculator.addEventListener('keypress', () => blockInvalidKeys(tecla));
         clearEntryButton.addEventListener('click', () => clearInput());
         clearAllButton.addEventListener('click', () => clearInputAndResult());
@@ -119,7 +119,6 @@
             
         botones.forEach(button => {button.addEventListener('click', () => buttonClick(button))});
         operaciones.forEach(operation => {operation.addEventListener('click', () => saveOrApplyOperation(operation))});    
-        
     </script>
 </body>
 </html>
